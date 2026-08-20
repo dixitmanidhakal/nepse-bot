@@ -1,0 +1,57 @@
+# Warm the NEPSE scraper cache automatically on a schedule.
+#
+# This workflow pings the backend health endpoint every 10 minutes during
+# NEPSE market hours (Sunday–Thursday 11:00–15:00 NPT = 05:15–09:15 UTC).
+# It also runs a broader sweep every 15 minutes throughout the day so
+# the live market, floorsheet, and index data stay fresh.
+#
+# HOW TO SET IT UP
+# ────────────────
+# 1. In your GitHub repo → Settings → Secrets → Actions, add:
+#    BACKEND_URL  →  https://your-nepse-bot-be.vercel.app
+# 2. Push this file to .github/workflows/warm-cache.yml
+# 3. The workflow activates automatically.
+#
+# Note: GitHub Actions free-tier allows 2,000 minutes/month for private
+# repos and unlimited for public repos, so this schedule is essentially free.
+
+name: Warm Scraper Cache
+
+on:
+  schedule:
+    # Every 10 minutes during NEPSE market hours (05:15–09:20 UTC, Sun–Thu)
+    - cron: "*/10 5-9 * * 0-4"
+    # Every 15 minutes rest of the day to keep floorsheet / EOD data fresh
+    - cron: "*/15 0-4,10-23 * * *"
+  workflow_dispatch:   # allow manual trigger from GitHub UI
+
+jobs:
+  ping:
+    name: Ping backend endpoints
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Health check (warms all sources)
+        run: |
+          curl -sf --max-time 30 \
+            "${{ secrets.BACKEND_URL }}/api/v1/free/health" \
+            -o /dev/null && echo "health OK" || echo "health failed (non-fatal)"
+
+      - name: Live market snapshot
+        run: |
+          curl -sf --max-time 30 \
+            "${{ secrets.BACKEND_URL }}/api/v1/free/market/live" \
+            -o /dev/null && echo "live OK" || echo "live failed (non-fatal)"
+
+      - name: Sector indices
+        run: |
+          curl -sf --max-time 30 \
+            "${{ secrets.BACKEND_URL }}/api/v1/free/indices/sectors" \
+            -o /dev/null && echo "sectors OK" || echo "sectors failed (non-fatal)"
+
+      - name: Latest floorsheet
+        run: |
+          curl -sf --max-time 30 \
+            "${{ secrets.BACKEND_URL }}/api/v1/free/floorsheet/latest" \
+            -o /dev/null && echo "floorsheet OK" || echo "floorsheet failed (non-fatal)"

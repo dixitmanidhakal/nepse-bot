@@ -1,0 +1,52 @@
+# Web Framework
+fastapi==0.115.6              # Modern, fast web framework for building APIs (Python 3.13 compatible)
+uvicorn[standard]==0.34.0     # ASGI server for running FastAPI (Python 3.13 compatible)
+
+# Database
+sqlalchemy==2.0.36            # SQL toolkit and ORM (Python 3.13 compatible)
+psycopg2-binary==2.9.10       # PostgreSQL adapter for Python (Python 3.13 compatible)
+alembic==1.14.0               # Database migration tool (Python 3.13 compatible)
+
+# Data Processing
+pandas==2.2.3                 # Data manipulation and analysis (Python 3.13 compatible)
+numpy==2.2.1                  # Numerical computing (Python 3.13 compatible)
+scipy>=1.13.0                 # Scientific computing (argrelextrema for support/resistance)
+hmmlearn>=0.3.0               # Gaussian HMM for regime detection (imported lazily)
+skfolio>=0.20.1               # Portfolio optimization (HRP, MVO, etc.)
+
+# Technical Analysis
+# TA-Lib==0.4.28              # Technical analysis library - COMMENTED OUT
+# Note: Install system library first with: brew install ta-lib
+# Then uncomment and install: pip install TA-Lib
+
+# Configuration & Environment
+python-dotenv==1.0.1          # Load environment variables from .env
+pydantic==2.10.6              # Data validation using Python type hints (Python 3.13 compatible)
+pydantic-settings==2.7.1      # Settings management for Pydantic (Python 3.13 compatible)
+
+# HTTP Client
+# Pinned to match nepse package requirement (httpx[http2]==0.27.2)
+httpx[http2]==0.27.2          # Async HTTP client for API calls
+requests==2.32.3              # Synchronous HTTP library (Python 3.13 compatible)
+tenacity==9.1.2               # Retry library for handling transient failures
+
+# Web Scraping
+beautifulsoup4==4.12.3        # HTML/XML parsing for web scraping (Python 3.13 compatible)
+lxml==5.3.0                   # Fast XML/HTML parser (BeautifulSoup backend)
+urllib3==2.3.0                # HTTP library (SSL warning suppression for nepalstock.com)
+
+# Task Scheduling
+APScheduler==3.11.0           # Advanced Python Scheduler for background tasks (Python 3.13 compatible)
+
+# Testing
+pytest==8.3.4                 # Testing framework (Python 3.13 compatible)
+pytest-asyncio==0.24.0        # Async support for pytest (Python 3.13 compatible)
+pytest-cov==6.0.0             # Coverage plugin for pytest (Python 3.13 compatible)
+
+# Utilities
+python-dateutil==2.9.0        # Extensions to the standard datetime module
+pytz==2024.2                  # Timezone definitions
+
+# NEPSE Unofficial API (market depth, live market, floorsheet)
+# Pinned to the commit used by nepse-quant-terminal for compatibility
+nepse @ git+https://github.com/basic-bgnr/NepseUnofficialApi.git@2f09fbfdcbaf23545d5755b6f11b367324d5b8a4

@@ -1,0 +1,114 @@
+==========================================
+DAY 6 API ENDPOINT TESTING
+Pattern Detection Component
+==========================================
+
+==========================================
+GENERAL PATTERN DETECTION (3 tests)
+==========================================
+
+Test 1: Detect all patterns
+  GET /patterns/NABIL/all?days=120
+  [0;31m✗ FAIL[0m (HTTP 000)
+
+
+Test 2: Get pattern summary
+  GET /patterns/NABIL/summary?days=90
+  [0;31m✗ FAIL[0m (HTTP 000)
+
+
+Test 3: Detect S/R levels
+  GET /patterns/NABIL/support-resistance?days=180
+  [0;31m✗ FAIL[0m (HTTP 000)
+
+
+==========================================
+SUPPORT/RESISTANCE DETECTION (2 tests)
+==========================================
+
+Test 4: Detect support levels
+  GET /patterns/NABIL/support?days=180&min_touches=2
+  [0;31m✗ FAIL[0m (HTTP 000)
+
+
+Test 5: Detect resistance levels
+  GET /patterns/NABIL/resistance?days=180&min_touches=2
+  [0;31m✗ FAIL[0m (HTTP 000)
+
+
+==========================================
+TREND ANALYSIS (3 tests)
+==========================================
+
+Test 6: Analyze trend
+  GET /patterns/NABIL/trend?days=90
+  [0;31m✗ FAIL[0m (HTTP 000)
+
+
+Test 7: Detect trend channel
+  GET /patterns/NABIL/trend/channel?days=90
+  [0;31m✗ FAIL[0m (HTTP 000)
+
+
+Test 8: Detect trend reversal
+  GET /patterns/NABIL/trend/reversal?days=60
+  [0;31m✗ FAIL[0m (HTTP 000)
+
+
+==========================================
+CHART PATTERNS (6 tests)
+==========================================
+
+Test 9: Detect all chart patterns
+  GET /patterns/NABIL/chart-patterns?days=120
+  [0;31m✗ FAIL[0m (HTTP 000)
+
+
+Test 10: Detect double top
+  GET /patterns/NABIL/chart-patterns/double-top?days=90
+  [0;31m✗ FAIL[0m (HTTP 000)
+
+
+Test 11: Detect double bottom
+  GET /patterns/NABIL/chart-patterns/double-bottom?days=90
+  [0;31m✗ FAIL[0m (HTTP 000)
+
+
+Test 12: Detect head & shoulders
+  GET /patterns/NABIL/chart-patterns/head-shoulders?days=120
+  [0;31m✗ FAIL[0m (HTTP 000)
+
+
+Test 13: Detect triangle patterns
+  GET /patterns/NABIL/chart-patterns/triangle?days=60
+  [0;31m✗ FAIL[0m (HTTP 000)
+
+
+Test 14: Detect flag patterns
+  GET /patterns/NABIL/chart-patterns/flag?days=40
+  [0;31m✗ FAIL[0m (HTTP 000)
+
+
+==========================================
+BREAKOUTS & SIGNALS (2 tests)
+==========================================
+
+Test 15: Detect breakouts
+  GET /patterns/NABIL/breakouts?days=60
+  [0;31m✗ FAIL[0m (HTTP 000)
+
+
+Test 16: Get trading signals
+  GET /patterns/NABIL/signals?days=90
+  [0;31m✗ FAIL[0m (HTTP 000)
+
+
+==========================================
+TEST SUMMARY
+==========================================
+
+Total Tests: 16
+[0;32mPassed: 0[0m
+[0;31mFailed: 16[0m
+
+[1;33m⚠ Some tests failed (expected if no data in DB)[0m
